@@ -2,6 +2,8 @@
 
 Sandbox repository for trying out dsh-superagent.
 
+> **Note:** This repository is a sandbox, used only for experimentation.
+
 ## Contributing
 
 Contributions are welcome. To propose a change:
