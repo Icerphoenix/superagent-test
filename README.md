@@ -1,20 +1,20 @@
-# superagent-test
+﻿# superagent-test
 
-Sandbox repository for trying out dsh-superagent.
+**This is a throwaway sandbox repository.** It is not a real project, it contains no application code, and its contents exist only to exercise an automated agent that turns a GitHub request into a pull request.
 
-> **Note:** This repository is a sandbox, used only for experimentation.
+Every commit, pull request and comment here was produced by that agent during a test run. Nothing in this repository is meant to be reused, forked as a starting point, or read as documentation.
+
+## What the sandbox is for
+
+Each run has the same shape: a person opens an Issue addressing the agent's bot account, and the agent works in its own checkout and opens a pull request for a human to review and merge.
+
+- `README.md` and `CHANGELOG.md` exist because earlier test runs added them.
+- Issues and pull requests stay closed once their test completes.
+- Commits are authored by the agent's bot account, not by a person.
 
 ## Contributing
 
-Contributions are welcome. To propose a change:
-
-1. Fork the repository and create a branch from `main`.
-2. Make your change and commit it with a clear message.
-3. Open a pull request describing what changed and why.
-
-### Running the tests
-
-This repository does not yet contain application code or a test suite, so there are currently no tests to run. If you add code, include tests with it and document the command to run them here.
+Please don't open pull requests here. This repository is a test fixture; changes belong in the upstream project.
 
 ## License
 
