@@ -1,0 +1,26 @@
+{
+  "name": "calorie-deficit-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "单人本地使用的热量赤字追踪：称重录入饮食、每日体重与趋势、有氧热量",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "bin": {
+    "calorie-deficit": "bin/calorie-deficit.js"
+  },
+  "scripts": {
+    "start": "node bin/calorie-deficit.js",
+    "test": "node --test 'test/**/*.test.js'",
+    "test:ui": "node test/ui-smoke.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "public",
+    "data/foods.json",
+    "data/activities.json"
+  ]
+}

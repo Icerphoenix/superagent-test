@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>热量赤字追踪 · UI 冒烟测试</title>
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body>
+    <!-- Same shell as public/index.html so the smoke test exercises the real
+         stylesheet and the real app.js against a stubbed API. -->
+    <header class="topbar">
+      <a class="brand" href="#/">热量赤字追踪</a>
+      <nav class="tabs">
+        <a href="#/" data-tab="day">今日记录</a>
+        <a href="#/trend" data-tab="trend">趋势</a>
+        <a href="#/history" data-tab="history">历史</a>
+        <a href="#/settings" data-tab="settings">设置</a>
+      </nav>
+      <span class="local-badge" title="数据只存在本机">本地 · 单用户</span>
+    </header>
+    <main id="app" aria-live="polite"></main>
+    <div id="toast" class="toast" hidden></div>
+    <script type="module">
+      // Stub every endpoint app.js calls with a small, deterministic fixture.
+      const DAY = {
+        date: "2026-11-05",
+        meals: [
+          { id: 1, date: "2026-11-05", slot: "breakfast", foodId: "egg", foodName: "鸡蛋", grams: 100, components: { self: 100 }, kcal: 144, carb: 1.6, protein: 12, fat: 10, alcohol: 0, note: "" },
+          { id: 2, date: "2026-11-05", slot: "lunch", foodId: "rice", foodName: "米饭（一般）", grams: 200, components: { self: 100 }, kcal: 265, carb: 60, protein: 5, fat: 0.6, alcohol: 0, note: "" },
+        ],
+        bySlot: {
+          breakfast: { items: [{ id: 1, slot: "breakfast", foodName: "鸡蛋", grams: 100, kcal: 144, carb: 1.6, protein: 12, fat: 10 }], totals: { kcal: 144, carb: 1.6, protein: 12, fat: 10, alcohol: 0 } },
+          lunch: { items: [{ id: 2, slot: "lunch", foodName: "米饭（一般）", grams: 200, kcal: 265, carb: 60, protein: 5, fat: 0.6 }], totals: { kcal: 265, carb: 60, protein: 5, fat: 0.6, alcohol: 0 } },
+          dinner: { items: [], totals: { kcal: 0, carb: 0, protein: 0, fat: 0, alcohol: 0 } },
+          snack: { items: [], totals: { kcal: 0, carb: 0, protein: 0, fat: 0, alcohol: 0 } },
+        },
+        totals: { kcal: 409, carb: 61.6, protein: 17, fat: 10.6, alcohol: 0 },
+        loggedMeals: 2,
+        activities: [{ id: 1, date: "2026-11-05", method: "activity", group: "平地走", detail: "每走一小时", minutes: 45, kcal: 219 }],
+        activityKcal: 219,
+        weight: { kg: 76.2, note: "" },
+        attachments: [],
+      };
+
+      const trendSeries = Array.from({ length: 14 }, (_, i) => {
+        const date = new Date(Date.UTC(2026, 9, 23 + i)).toISOString().slice(0, 10);
+        return { date, kg: Number((77 - i * 0.06).toFixed(2)), ewma: Number((77 - i * 0.05).toFixed(2)) };
+      });
+
+      const fixtures = {
+        "/api/days/": { day: DAY },
+        "/api/profile": { profile: { sex: "male", heightCm: 167, birthYear: 1994, restHr: 64 } },
+        "/api/foods": { foods: [{ id: "rice", name: "米饭（一般）", aliases: ["米饭"], category: "米类主食", note: "", components: { self: { per100g: { kcal: 132.7, carb: 30, protein: 2.5, fat: 0.3 }, basis: "熟重" } }, componentsKeys: ["self"] }] },
+        "/api/activity-table": { methodOne: { kcalPerKgHour: "activeHR/restHR*6.4-6.2" }, methodTwo: [{ group: "平地走", detail: "每走一小时", kcalPerKgHour: 3.8 }] },
+        "/api/weights": { weights: trendSeries.map((s) => ({ date: s.date, kg: s.kg, note: "" })) },
+        "/api/trend": {
+          report: {
+            endDate: "2026-11-05",
+            windowDays: 14,
+            trend: { status: "ok", fromDate: "2026-10-23", weeklyKg: -0.35, weeklyKgRange: [-0.41, -0.29], readings: 14, series: trendSeries },
+            energy: { status: "ok", avgIntakeKcal: 1980, maintenanceKcal: 2300, activityKcalPerDay: 180, avgDeficitKcal: 320, predictedWeeklyKg: -0.29, daysLogged: 14 },
+            coverage: { mealDays: 14, activityDays: 5, weightReadings: 14 },
+            comparison: { status: "ok", observedWeeklyKg: -0.35, predictedWeeklyKg: -0.29, gapWeeklyKg: -0.06, tolerance: 0.3, consistent: true, message: "趋势和记录的热量大致对得上" },
+          },
+        },
+        "/api/weekly": { weeks: Array.from({ length: 6 }, (_, i) => ({ from: `2026-0${9 + Math.floor(i / 4)}-2${i % 4}`, to: `2026-0${9 + Math.floor(i / 4)}-2${i % 4}`, loggedDays: 7, avgKcal: 1980 + i * 10, avgCarb: 210, avgProtein: 110, avgFat: 55, avgWeight: 77 - i * 0.2 })) },
+      };
+
+      const json = (body) => new Response(JSON.stringify(body), { status: 200, headers: { "Content-Type": "application/json" } });
+      window.fetch = async (input, init) => {
+        const url = typeof input === "string" ? input : input.url;
+        const path = url.replace(/^https?:\/\/[^/]+/, "");
+        if (init?.method && init.method !== "GET") return json({ ok: true });
+        for (const [prefix, body] of Object.entries(fixtures)) {
+          if (path.startsWith(prefix)) return json(body);
+        }
+        return json({});
+      };
+      // Fail the smoke test in the harness when the app itself reports an error.
+      const observer = new MutationObserver(() => {
+        if (document.getElementById("app")?.textContent?.includes("出错了")) {
+          window.__uiError = document.getElementById("app").textContent;
+        }
+      });
+      window.addEventListener("DOMContentLoaded", () => observer.observe(document.body, { childList: true, subtree: true, characterData: true }));
+    </script>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
