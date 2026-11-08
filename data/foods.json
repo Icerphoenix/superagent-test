@@ -1,0 +1,2819 @@
+{
+ "source": {
+  "workbook": "健身Excel超级套表（作者：B站好人松松）26年4月最新版.xlsx",
+  "sheets": [
+   "19日常食物营养率",
+   "17减脂-问答汇总（问答5/7/13/25/26）",
+   "8减脂-无力训者"
+  ],
+  "extractedAt": "2026-11-08"
+ },
+ "energy": {
+  "carbPerGram": 4.0,
+  "proteinPerGram": 4.0,
+  "fatPerGram": 9.0
+ },
+ "notes": [
+  "碳水率/蛋白质率取自「19日常食物营养率」；仅列碳水率的行（蔬菜、水果等）没有蛋白质率与脂肪率数据，本表用常见近似值估算，另列区间型食物（面条、米线、卷饼、高脂肉、糖油混合物）另写区间。",
+  "脂肪一列：原表建议不细算脂肪，以「鸡蛋牛奶+带油瘦肉菜+排除高脂肉和糖油混合物」为准。本软件为了给出趋势数据而计算脂肪，误差请以趋势为准，不要把单日数字当成精确值。",
+  "同一食物有熟制状态不同（生/熟）时，请按实际称重的状态选择，不要混用。",
+  "酒精单列为组成项：每1%酒精/100ml 约 7 大卡（50度白酒每100g约350大卡，3度啤酒每100ml约21大卡）。",
+  "区间型食物（外食米饭、面条、切片面包、卷饼、熟瘦肉等）在 components.<key>.interval 里保留套表给的上下限，计算时取区间中点；interval.nutrient 说明区间对应哪个营养素。",
+  "interval.per100gValue 是本表实际用于计算的中点值（= (per100gMin+per100gMax)/2），核对后与 per100g 中的该营养素一致。"
+ ],
+ "foods": [
+  {
+   "id": "rice_dry",
+   "name": "生米",
+   "aliases": [
+    "生米",
+    "生大米",
+    "糙米（生）",
+    "小米（生）"
+   ],
+   "category": "米类主食",
+   "note": "大米、糙米、糯米、小米、紫米、黑米等不分品种碳水率近似；除黑米外均是高GI",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 334.3,
+      "carb": 75,
+      "protein": 7,
+      "fat": 0.7
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "rice_soft",
+   "name": "米饭（很软）",
+   "aliases": [
+    "米饭软",
+    "很软的米饭"
+   ],
+   "category": "米类主食",
+   "note": "只有自己做饭才可能这么软",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 112.7,
+      "carb": 25,
+      "protein": 2.5,
+      "fat": 0.3
+     },
+     "basis": "自制熟重/生重近似",
+     "interval": {
+      "nutrient": "carb",
+      "per100gMin": 23.0,
+      "per100gMax": 27.0,
+      "used": "midpoint",
+      "note": "很软的米饭碳水率约23-27%；本表取25%",
+      "per100gValue": 25
+     }
+    }
+   }
+  },
+  {
+   "id": "rice",
+   "name": "米饭（一般）",
+   "aliases": [
+    "米饭",
+    "白米饭",
+    "大米饭",
+    "熟米饭"
+   ],
+   "category": "米类主食",
+   "note": "外食的一般米饭；长方形标准外卖盒一般100-120g碳水/盒",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 132.7,
+      "carb": 30,
+      "protein": 2.5,
+      "fat": 0.3
+     },
+     "basis": "自制熟重/生重近似",
+     "interval": {
+      "nutrient": "carb",
+      "per100gMin": 28.0,
+      "per100gMax": 32.0,
+      "used": "midpoint",
+      "note": "外食米饭碳水率约28-32%；本表取30%",
+      "per100gValue": 30
+     }
+    }
+   }
+  },
+  {
+   "id": "rice_hard",
+   "name": "米饭（偏硬）",
+   "aliases": [
+    "米饭硬",
+    "偏硬米饭"
+   ],
+   "category": "米类主食",
+   "note": "外食的一般米饭，长方形标准外卖盒一般100-120g碳水/盒",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 153.5,
+      "carb": 35,
+      "protein": 2.7,
+      "fat": 0.3
+     },
+     "basis": "自制熟重/生重近似",
+     "interval": {
+      "nutrient": "carb",
+      "per100gMin": 33.0,
+      "per100gMax": 37.0,
+      "used": "midpoint",
+      "note": "偏硬的米饭碳水率约33-37%；本表取35%",
+      "per100gValue": 35
+     }
+    }
+   }
+  },
+  {
+   "id": "congee_thin",
+   "name": "米粥（稀）",
+   "aliases": [
+    "稀粥",
+    "稀饭",
+    "小米粥"
+   ],
+   "category": "米类主食",
+   "note": "粘稠度类似小米粥的稀饭",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 46.2,
+      "carb": 10,
+      "protein": 1.1,
+      "fat": 0.2
+     },
+     "basis": "自制熟重/生重近似"
+    }
+   }
+  },
+  {
+   "id": "congee",
+   "name": "米粥（一般）",
+   "aliases": [
+    "米粥",
+    "白粥",
+    "粥（一般）"
+   ],
+   "category": "米类主食",
+   "note": "粘稠度比小米粥要稠的稀饭",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 59.4,
+      "carb": 13,
+      "protein": 1.4,
+      "fat": 0.2
+     },
+     "basis": "自制熟重/生重近似"
+    }
+   }
+  },
+  {
+   "id": "rice_noodle",
+   "name": "米线（熟）",
+   "aliases": [
+    "米线",
+    "米粉（熟）"
+   ],
+   "category": "米类主食",
+   "note": "米线饱腹感很低，外食一般不低于100g碳水/份",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 137.8,
+      "carb": 33,
+      "protein": 1.0,
+      "fat": 0.2
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "cheong_fun",
+   "name": "肠粉（熟）",
+   "aliases": [
+    "肠粉"
+   ],
+   "category": "米类主食",
+   "note": "广东地方主食，一般50-70g碳水/份",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 101.0,
+      "carb": 20,
+      "protein": 3,
+      "fat": 1
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "zongzi",
+   "name": "粽子",
+   "aliases": [],
+   "category": "米类主食",
+   "note": "白粽、豆沙粽可吃，不吃肉粽；饱腹感很低，一般40-60g碳水/个",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 225.0,
+      "carb": 50,
+      "protein": 4,
+      "fat": 1
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "bread_slice",
+   "name": "切片面包",
+   "aliases": [
+    "吐司",
+    "吐司面包",
+    "切片土司",
+    "全麦切片面包"
+   ],
+   "category": "麦类主食",
+   "note": "普通切片面包脂肪率低于8%；花式面包脂肪率高于10%-15%（轻度糖油混合物）",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 277.0,
+      "carb": 50,
+      "protein": 8,
+      "fat": 5
+     },
+     "basis": "熟重",
+     "interval": {
+      "nutrient": "carb",
+      "per100gMin": 44.0,
+      "per100gMax": 52.0,
+      "used": "midpoint",
+      "note": "普通切片面包碳水率约44-52%，脂肪率低于8%；本表取中点50%",
+      "per100gValue": 50
+     }
+    }
+   }
+  },
+  {
+   "id": "mantou",
+   "name": "馒头/花卷/馍/馕",
+   "aliases": [
+    "馒头",
+    "花卷",
+    "馍",
+    "馕"
+   ],
+   "category": "麦类主食",
+   "note": "速冻或现售馒头碳水率50%左右，自行定量",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 237.0,
+      "carb": 50,
+      "protein": 7,
+      "fat": 1
+     },
+     "basis": "自制熟重/生重近似"
+    }
+   }
+  },
+  {
+   "id": "dry_noodle",
+   "name": "挂面（生）",
+   "aliases": [
+    "挂面",
+    "干面条",
+    "干面"
+   ],
+   "category": "麦类主食",
+   "note": "面条里少有的中等GI碳水",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 357.5,
+      "carb": 75,
+      "protein": 11,
+      "fat": 1.5
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "pasta_dry",
+   "name": "意面（生）",
+   "aliases": [
+    "意大利面生",
+    "意面干"
+   ],
+   "category": "麦类主食",
+   "note": "低GI碳水",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 361.5,
+      "carb": 75,
+      "protein": 12,
+      "fat": 1.5
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "fresh_noodle",
+   "name": "鲜面（生）",
+   "aliases": [
+    "生鲜面",
+    "鲜面条",
+    "手擀面（生）"
+   ],
+   "category": "麦类主食",
+   "note": "现和现拉、未下锅的面条；外食一般不低于100g碳水/份",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 289.5,
+      "carb": 60,
+      "protein": 9,
+      "fat": 1.5
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "cold_noodle",
+   "name": "凉面（熟）",
+   "aliases": [
+    "凉面"
+   ],
+   "category": "麦类主食",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 147.0,
+      "carb": 30,
+      "protein": 4.5,
+      "fat": 1
+     },
+     "basis": "熟重",
+     "interval": {
+      "nutrient": "carb",
+      "per100gMin": 26.0,
+      "per100gMax": 34.0,
+      "used": "midpoint",
+      "note": "外食面条吸水率不一，碳水率约26-34%；本表取30%",
+      "per100gValue": 30
+     }
+    }
+   }
+  },
+  {
+   "id": "thick_noodle",
+   "name": "粗面（熟）",
+   "aliases": [
+    "粗面",
+    "粗面条"
+   ],
+   "category": "麦类主食",
+   "note": "吸水率比细面低一些",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 147.0,
+      "carb": 30,
+      "protein": 4.5,
+      "fat": 1
+     },
+     "basis": "熟重",
+     "interval": {
+      "nutrient": "carb",
+      "per100gMin": 26.0,
+      "per100gMax": 34.0,
+      "used": "midpoint",
+      "note": "外食面条吸水率不一，碳水率约26-34%；本表取30%",
+      "per100gValue": 30
+     }
+    }
+   }
+  },
+  {
+   "id": "pasta_cooked",
+   "name": "意面（熟）",
+   "aliases": [
+    "意大利面熟",
+    "意面熟"
+   ],
+   "category": "麦类主食",
+   "note": "低GI碳水",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 149.0,
+      "carb": 30,
+      "protein": 5,
+      "fat": 1
+     },
+     "basis": "熟重",
+     "interval": {
+      "nutrient": "carb",
+      "per100gMin": 26.0,
+      "per100gMax": 34.0,
+      "used": "midpoint",
+      "note": "意面熟重碳水率约26-34%；本表取30%",
+      "per100gValue": 30
+     }
+    }
+   }
+  },
+  {
+   "id": "thin_noodle",
+   "name": "细面（熟）",
+   "aliases": [
+    "细面",
+    "面条（熟）",
+    "熟面条",
+    "白面条",
+    "汤面"
+   ],
+   "category": "麦类主食",
+   "note": "吸水率比粗面高一些；外食一般不低于100g碳水/份",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 117.0,
+      "carb": 23,
+      "protein": 4,
+      "fat": 1
+     },
+     "basis": "熟重",
+     "interval": {
+      "nutrient": "carb",
+      "per100gMin": 19.0,
+      "per100gMax": 27.0,
+      "used": "midpoint",
+      "note": "细面吸水率高，碳水率约19-27%；本表取23%",
+      "per100gValue": 23
+     }
+    }
+   }
+  },
+  {
+   "id": "pancake",
+   "name": "卷饼/烙饼/馕（熟）",
+   "aliases": [
+    "卷饼",
+    "烙饼",
+    "炊饼",
+    "手抓饼",
+    "葱油饼"
+   ],
+   "category": "麦类主食",
+   "note": "面粉糊烤熟成饼状主食，饱腹感很低；外食一般不低于100g碳水/份（不要当菜吃）",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 259.0,
+      "carb": 50,
+      "protein": 8,
+      "fat": 3
+     },
+     "basis": "熟重",
+     "interval": {
+      "nutrient": "carb",
+      "per100gMin": 45.0,
+      "per100gMax": 55.0,
+      "used": "midpoint",
+      "note": "卷饼/烙饼/馕碳水率约45-55%（厚薄不一）；本表取50%",
+      "per100gValue": 50
+     }
+    }
+   }
+  },
+  {
+   "id": "sweet_potato",
+   "name": "红薯（生/蒸煮）",
+   "aliases": [
+    "红薯",
+    "地瓜",
+    "番薯",
+    "蒸红薯"
+   ],
+   "category": "其他主食",
+   "note": "生熟重量差别不大，无需区分",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 78.2,
+      "carb": 18,
+      "protein": 1.1,
+      "fat": 0.2
+     },
+     "basis": "自制熟重/生重近似"
+    }
+   }
+  },
+  {
+   "id": "sweet_potato_roast",
+   "name": "红薯（烤）",
+   "aliases": [
+    "烤红薯",
+    "烤地瓜"
+   ],
+   "category": "其他主食",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 99.8,
+      "carb": 23,
+      "protein": 1.5,
+      "fat": 0.2
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "potato",
+   "name": "土豆（生/蒸煮）",
+   "aliases": [
+    "土豆",
+    "马铃薯",
+    "蒸土豆",
+    "土豆块"
+   ],
+   "category": "其他主食",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 81.8,
+      "carb": 18,
+      "protein": 2,
+      "fat": 0.2
+     },
+     "basis": "自制熟重/生重近似"
+    }
+   }
+  },
+  {
+   "id": "potato_roast",
+   "name": "土豆（烤）",
+   "aliases": [
+    "烤土豆"
+   ],
+   "category": "其他主食",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 104.3,
+      "carb": 23,
+      "protein": 2.4,
+      "fat": 0.3
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "sweet_potato_noodle",
+   "name": "红薯/土豆粉丝（生）",
+   "aliases": [
+    "粉丝",
+    "红薯粉",
+    "土豆粉",
+    "粉条"
+   ],
+   "category": "其他主食",
+   "note": "低GI碳水，例如酸辣粉、红薯粉；注意米粉米线等新鲜食品不属于此类",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 339.8,
+      "carb": 84,
+      "protein": 0.5,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "sweet_corn",
+   "name": "甜玉米（生/蒸煮）",
+   "aliases": [
+    "玉米",
+    "甜玉米",
+    "笨玉米",
+    "老式玉米"
+   ],
+   "category": "其他主食",
+   "note": "指传统玉米，碳水率和GI比糯玉米低不少",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 106.8,
+      "carb": 20,
+      "protein": 4,
+      "fat": 1.2
+     },
+     "basis": "自制熟重/生重近似"
+    }
+   }
+  },
+  {
+   "id": "waxy_corn",
+   "name": "糯玉米（生/蒸煮）",
+   "aliases": [
+    "糯玉米",
+    "粘玉米"
+   ],
+   "category": "其他主食",
+   "note": "碳水率和GI比甜玉米高得多",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 169.5,
+      "carb": 35,
+      "protein": 4,
+      "fat": 1.5
+     },
+     "basis": "自制熟重/生重近似"
+    }
+   }
+  },
+  {
+   "id": "pumpkin_baby",
+   "name": "贝贝南瓜",
+   "aliases": [
+    "贝贝南瓜",
+    "板栗南瓜"
+   ],
+   "category": "其他主食",
+   "note": "和传统南瓜的碳水率差别极大",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 91.8,
+      "carb": 21,
+      "protein": 1.5,
+      "fat": 0.2
+     },
+     "basis": "自制熟重/生重近似"
+    }
+   }
+  },
+  {
+   "id": "pumpkin",
+   "name": "传统南瓜",
+   "aliases": [
+    "南瓜"
+   ],
+   "category": "其他主食",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 24.9,
+      "carb": 5,
+      "protein": 1,
+      "fat": 0.1
+     },
+     "basis": "自制熟重/生重近似"
+    }
+   }
+  },
+  {
+   "id": "yam",
+   "name": "山药（生/蒸煮）",
+   "aliases": [
+    "山药",
+    "铁棍山药"
+   ],
+   "category": "其他主食",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 57.4,
+      "carb": 12,
+      "protein": 1.9,
+      "fat": 0.2
+     },
+     "basis": "自制熟重/生重近似"
+    }
+   }
+  },
+  {
+   "id": "lotus_powder",
+   "name": "藕粉（生）",
+   "aliases": [
+    "藕粉"
+   ],
+   "category": "其他主食",
+   "note": "低GI碳水，必须用开水冲调",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 361.7,
+      "carb": 90,
+      "protein": 0.2,
+      "fat": 0.1
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "oat_bran",
+   "name": "燕麦麸皮（生）",
+   "aliases": [
+    "燕麦麸皮",
+    "燕麦麸"
+   ],
+   "category": "其他主食",
+   "note": "低GI碳水、饱腹感极强、极高膳食纤维；指干重",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 311.0,
+      "carb": 45,
+      "protein": 17,
+      "fat": 7
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "oat_flake",
+   "name": "速食燕麦片（生）",
+   "aliases": [
+    "燕麦片",
+    "燕麦",
+    "速食燕麦片"
+   ],
+   "category": "其他主食",
+   "note": "饱腹感极强、极高膳食纤维；指干重",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 355.0,
+      "carb": 60,
+      "protein": 13,
+      "fat": 7
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "rye_flake",
+   "name": "速食黑麦片（生）",
+   "aliases": [
+    "黑麦片",
+    "速食黑麦片"
+   ],
+   "category": "其他主食",
+   "note": "脂肪率比燕麦片低不少；指干重",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 310.0,
+      "carb": 60,
+      "protein": 13,
+      "fat": 2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "wgdao_noodle",
+   "name": "五谷道场方便面",
+   "aliases": [
+    "五谷道场"
+   ],
+   "category": "方便食品",
+   "note": "碳水约50g/袋或盒；面饼非油炸，属碳水食物；高钠",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 332.0,
+      "carb": 65,
+      "protein": 9,
+      "fat": 4
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "shinramyun",
+   "name": "辛拉面（普通版）",
+   "aliases": [
+    "辛拉面"
+   ],
+   "category": "方便食品",
+   "note": "碳水约50g/袋；面饼油炸、调料无油，接近碳水食物；高钠",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 350.0,
+      "carb": 65,
+      "protein": 9,
+      "fat": 6
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "shinramyun_dry",
+   "name": "辛拉面（空空面版）",
+   "aliases": [
+    "辛拉面空空面"
+   ],
+   "category": "方便食品",
+   "note": "面饼非油炸、调料包无油；高钠",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 314.0,
+      "carb": 65,
+      "protein": 9,
+      "fat": 2
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "kangli_pasta",
+   "name": "康力快熟意大利面",
+   "aliases": [
+    "康力意面"
+   ],
+   "category": "方便食品",
+   "note": "碳水约60g/袋；低GI碳水",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 157.0,
+      "carb": 32,
+      "protein": 5,
+      "fat": 1
+     },
+     "basis": "自制熟重/生重近似"
+    }
+   }
+  },
+  {
+   "id": "baijia_fensi",
+   "name": "白家陈记酸辣粉丝",
+   "aliases": [
+    "白家酸辣粉",
+    "酸辣粉（杯装）"
+   ],
+   "category": "方便食品",
+   "note": "碳水约40g/袋、60g/盒；低GI；高钠",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 308.0,
+      "carb": 60,
+      "protein": 8,
+      "fat": 4
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "jiandan_mantou",
+   "name": "旺仔小馒头（46g装）",
+   "aliases": [
+    "旺仔小馒头",
+    "小馒头"
+   ],
+   "category": "便携碳水",
+   "note": "碳水37g/袋；约1/4是蔗糖；46g装与42g装包装不同，请按包装净含量微调",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 434.0,
+      "carb": 88,
+      "protein": 7,
+      "fat": 6
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "qq_candy",
+   "name": "旺仔QQ糖",
+   "aliases": [
+    "QQ糖",
+    "旺仔QQ糖"
+   ],
+   "category": "便携碳水",
+   "note": "小包装20g装碳水15g/袋；大包装70g装碳水50g/袋",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 288.0,
+      "carb": 72,
+      "protein": 0,
+      "fat": 0
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "sesame_paste",
+   "name": "南方黑芝麻糊（无蔗糖版）",
+   "aliases": [
+    "黑芝麻糊"
+   ],
+   "category": "便携碳水",
+   "note": "碳水35g/袋；脂肪很低；已熟化，温水冲泡即可",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 357.0,
+      "carb": 70,
+      "protein": 8,
+      "fat": 5
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "corn_paste",
+   "name": "南方高山玉米糊（无蔗糖版）",
+   "aliases": [
+    "玉米糊"
+   ],
+   "category": "便携碳水",
+   "note": "碳水35g/袋",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 340.0,
+      "carb": 70,
+      "protein": 6,
+      "fat": 4
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "nutrition_rice_flour",
+   "name": "营养米粉",
+   "aliases": [
+    "营养米糊",
+    "米糊"
+   ],
+   "category": "便携碳水",
+   "note": "搜索“营养米粉”“营养米糊”；已熟化，温水冲泡即可",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 342.0,
+      "carb": 75,
+      "protein": 6,
+      "fat": 2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "rice_ball",
+   "name": "十月稻田饭团",
+   "aliases": [
+    "饭团",
+    "糙米饭团"
+   ],
+   "category": "便携碳水",
+   "note": "碳水25g/袋，开袋即食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 119.0,
+      "carb": 25,
+      "protein": 2.5,
+      "fat": 1
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "lvdagun",
+   "name": "红螺牌驴打滚",
+   "aliases": [
+    "驴打滚"
+   ],
+   "category": "便携碳水",
+   "note": "碳水10g/小袋；甜味剂是麦芽糖，不产生果糖",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 383.0,
+      "carb": 86,
+      "protein": 3,
+      "fat": 3
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "kaomo",
+   "name": "山西烤馍",
+   "aliases": [
+    "山西纯碱烤馍",
+    "烤馍"
+   ],
+   "category": "便携碳水",
+   "note": "保质期很长，口味类似葱香饼干",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 370.0,
+      "carb": 70,
+      "protein": 9,
+      "fat": 6
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "nonfried_noodle",
+   "name": "非油炸干脆面",
+   "aliases": [
+    "豫派干脆面"
+   ],
+   "category": "便携碳水",
+   "note": "碳水27g/袋",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 377.0,
+      "carb": 75,
+      "protein": 8,
+      "fat": 5
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "nonfried_guoba",
+   "name": "非油炸锅巴",
+   "aliases": [
+    "萃乐麦锅巴",
+    "锅巴"
+   ],
+   "category": "便携碳水",
+   "note": "碳水65g/袋",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 360.0,
+      "carb": 65,
+      "protein": 7,
+      "fat": 8
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "chestnut",
+   "name": "BHB熟板栗",
+   "aliases": [
+    "板栗",
+    "熟板栗"
+   ],
+   "category": "便携碳水",
+   "note": "碳水35g/袋；GI不算高，不宜作为练后碳水",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 165.0,
+      "carb": 35,
+      "protein": 4,
+      "fat": 1
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "qingtuan",
+   "name": "沈大成豆沙青团",
+   "aliases": [
+    "青团",
+    "豆沙青团"
+   ],
+   "category": "便携碳水",
+   "note": "碳水45g/个；只能是豆沙味",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 303.0,
+      "carb": 65,
+      "protein": 4,
+      "fat": 3
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "yunpian_gao",
+   "name": "云片糕/桃片",
+   "aliases": [
+    "云片糕",
+    "桃片"
+   ],
+   "category": "便携碳水",
+   "note": "一般为小袋装",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 371.0,
+      "carb": 80,
+      "protein": 6,
+      "fat": 3
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "mihuatang",
+   "name": "米花糖",
+   "aliases": [
+    "米花糖",
+    "米花"
+   ],
+   "category": "便携碳水",
+   "note": "一般为小袋装",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 388.0,
+      "carb": 85,
+      "protein": 3,
+      "fat": 4
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "babao_porridge",
+   "name": "娃哈哈八宝粥（木糖醇版）",
+   "aliases": [
+    "八宝粥",
+    "娃哈哈八宝粥"
+   ],
+   "category": "便携碳水",
+   "note": "碳水47g/罐；推荐木糖醇版",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 62.5,
+      "carb": 13,
+      "protein": 1.5,
+      "fat": 0.5
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "pocari",
+   "name": "宝矿力运动饮料",
+   "aliases": [
+    "宝矿力",
+    "宝矿力水特"
+   ],
+   "category": "便携碳水",
+   "note": "30g蔗糖/瓶（500ml）；不能作为练后全部碳水",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 24.0,
+      "carb": 6,
+      "protein": 0,
+      "fat": 0
+     },
+     "basis": "毫升"
+    }
+   }
+  },
+  {
+   "id": "mizone",
+   "name": "脉动运动饮料",
+   "aliases": [
+    "脉动"
+   ],
+   "category": "便携碳水",
+   "note": "30g蔗糖/瓶（600ml）；不能作为练后全部碳水",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 20.0,
+      "carb": 5,
+      "protein": 0,
+      "fat": 0
+     },
+     "basis": "毫升"
+    }
+   }
+  },
+  {
+   "id": "dried_jujube",
+   "name": "干枣",
+   "aliases": [
+    "干枣",
+    "红枣"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 205.0,
+      "carb": 50,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "fresh_jujube",
+   "name": "鲜枣",
+   "aliases": [
+    "鲜枣",
+    "冬枣"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 125.0,
+      "carb": 30,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "coconut_meat",
+   "name": "椰肉",
+   "aliases": [
+    "椰肉"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 125.0,
+      "carb": 30,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "durian",
+   "name": "榴莲",
+   "aliases": [
+    "榴莲"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 117.0,
+      "carb": 28,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "jackfruit",
+   "name": "菠萝蜜",
+   "aliases": [
+    "菠萝蜜"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 109.0,
+      "carb": 26,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "banana",
+   "name": "香蕉",
+   "aliases": [
+    "香蕉"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 93.0,
+      "carb": 22,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "grape_red",
+   "name": "提子",
+   "aliases": [
+    "提子",
+    "红提"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 73.0,
+      "carb": 17,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "lychee",
+   "name": "荔枝",
+   "aliases": [
+    "荔枝"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 73.0,
+      "carb": 17,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "longan",
+   "name": "桂圆",
+   "aliases": [
+    "桂圆",
+    "龙眼"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 73.0,
+      "carb": 17,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "kiwi",
+   "name": "猕猴桃",
+   "aliases": [
+    "猕猴桃",
+    "奇异果"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 65.0,
+      "carb": 15,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "apple",
+   "name": "苹果",
+   "aliases": [
+    "苹果"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 57.0,
+      "carb": 13,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "pear",
+   "name": "梨",
+   "aliases": [
+    "梨",
+    "雪梨",
+    "香梨"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 57.0,
+      "carb": 13,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "cherry_dark",
+   "name": "车厘子",
+   "aliases": [
+    "车厘子"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 57.0,
+      "carb": 13,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "dragonfruit",
+   "name": "火龙果",
+   "aliases": [
+    "火龙果"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 57.0,
+      "carb": 13,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "mango",
+   "name": "芒果",
+   "aliases": [
+    "芒果"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 57.0,
+      "carb": 13,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "mulberry",
+   "name": "桑葚",
+   "aliases": [
+    "桑葚"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 57.0,
+      "carb": 13,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "grape",
+   "name": "葡萄",
+   "aliases": [
+    "葡萄"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 53.0,
+      "carb": 12,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "tangerine",
+   "name": "橘子",
+   "aliases": [
+    "橘子",
+    "桔子",
+    "砂糖橘"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 53.0,
+      "carb": 12,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "orange",
+   "name": "橙子",
+   "aliases": [
+    "橙子",
+    "脐橙"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 49.0,
+      "carb": 11,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "peach",
+   "name": "桃",
+   "aliases": [
+    "桃",
+    "桃子",
+    "水蜜桃"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 45.0,
+      "carb": 10,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "pomelo",
+   "name": "柚子",
+   "aliases": [
+    "柚子",
+    "西柚"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 45.0,
+      "carb": 10,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "cherry",
+   "name": "樱桃",
+   "aliases": [
+    "樱桃"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 45.0,
+      "carb": 10,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "plum_dried",
+   "name": "西梅",
+   "aliases": [
+    "西梅"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 45.0,
+      "carb": 10,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "loquat",
+   "name": "枇杷",
+   "aliases": [
+    "枇杷"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 41.0,
+      "carb": 9,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "plum",
+   "name": "李子",
+   "aliases": [
+    "李子"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 41.0,
+      "carb": 9,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "apricot",
+   "name": "杏",
+   "aliases": [
+    "杏",
+    "杏子"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 41.0,
+      "carb": 9,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "hami_melon",
+   "name": "哈密瓜",
+   "aliases": [
+    "哈密瓜",
+    "蜜瓜"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 37.0,
+      "carb": 8,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "watermelon",
+   "name": "西瓜",
+   "aliases": [
+    "西瓜"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 33.0,
+      "carb": 7,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "papaya",
+   "name": "木瓜",
+   "aliases": [
+    "木瓜"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 33.0,
+      "carb": 7,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "cherry_tomato",
+   "name": "圣女果（小番茄）",
+   "aliases": [
+    "圣女果",
+    "小番茄"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 29.0,
+      "carb": 6,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "tomato",
+   "name": "西红柿（大番茄）",
+   "aliases": [
+    "西红柿",
+    "番茄",
+    "大番茄"
+   ],
+   "category": "水果",
+   "note": "水果实质是糖水，要计入碳水并置换主食",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 17.0,
+      "carb": 3,
+      "protein": 0.8,
+      "fat": 0.2
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "fish_shrimp",
+   "name": "瘦肉（鱼虾生肉）",
+   "aliases": [
+    "鱼虾瘦肉",
+    "鱼虾（生）",
+    "虾",
+    "鱼片"
+   ],
+   "category": "蛋白质",
+   "note": "鱼虾含水率高于家禽家畜，蛋白质率稍低；鱼虾类熟后蛋白质率会显著上升（按熟肉条计）",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 87.0,
+      "carb": 0,
+      "protein": 15,
+      "fat": 3
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "salmon_tuna",
+   "name": "瘦肉（三文鱼/金枪鱼）",
+   "aliases": [
+    "三文鱼",
+    "金枪鱼"
+   ],
+   "category": "蛋白质",
+   "note": "三文鱼/金枪鱼本身脂肪率较高，吃中腩或赤身无油生食可姑且视为瘦肉",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 170.0,
+      "carb": 0,
+      "protein": 20,
+      "fat": 10
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "meat_raw",
+   "name": "瘦肉（家禽家畜生肉）",
+   "aliases": [
+    "猪瘦肉（生）",
+    "牛瘦肉（生）",
+    "鸡胸肉（生）",
+    "生瘦肉"
+   ],
+   "category": "蛋白质",
+   "note": "鸡鸭肉要去皮，猪牛羊肉要没有白色脂肪层",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 107.0,
+      "carb": 0,
+      "protein": 20,
+      "fat": 3
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "meat_cooked",
+   "name": "瘦肉（一般的熟肉）",
+   "aliases": [
+    "瘦肉",
+    "鸡胸肉",
+    "瘦牛肉",
+    "瘦猪肉（熟）",
+    "熟瘦肉",
+    "瘦肉片",
+    "去皮鸡腿肉",
+    "鸡腿肉（去皮）"
+   ],
+   "category": "蛋白质",
+   "note": "鱼虾和家禽家畜瘦肉均属之，不用区分品种",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 127.0,
+      "carb": 0,
+      "protein": 25,
+      "fat": 3
+     },
+     "basis": "熟重",
+     "interval": {
+      "nutrient": "protein",
+      "per100gMin": 20.0,
+      "per100gMax": 30.0,
+      "used": "midpoint",
+      "note": "一般的熟瘦肉蛋白质率约20-30%（脱水程度不同）；本表取25%",
+      "per100gValue": 25
+     }
+    }
+   }
+  },
+  {
+   "id": "meat_cooked_dry",
+   "name": "瘦肉（柴感的熟肉）",
+   "aliases": [
+    "酱牛肉",
+    "卤肉",
+    "干柴卤肉"
+   ],
+   "category": "蛋白质",
+   "note": "脱水率更高，蛋白质率更高",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 147.0,
+      "carb": 0,
+      "protein": 30,
+      "fat": 3
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "jerky",
+   "name": "瘦肉干",
+   "aliases": [
+    "牛肉干",
+    "鸡肉干",
+    "内蒙牛肉干",
+    "低糖鸡肉干"
+   ],
+   "category": "蛋白质",
+   "note": "脱水率很高；碳水率（糖率）最好低于10%",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 228.0,
+      "carb": 8,
+      "protein": 40,
+      "fat": 4
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "whey",
+   "name": "蛋白粉",
+   "aliases": [
+    "乳清蛋白",
+    "分离乳清",
+    "大豆分离蛋白"
+   ],
+   "category": "蛋白质",
+   "note": "乳清蛋白粉一般70-80%，分离乳清80-90%",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 327.0,
+      "carb": 0,
+      "protein": 75,
+      "fat": 3
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "egg",
+   "name": "鸡蛋",
+   "aliases": [
+    "全蛋",
+    "水煮蛋",
+    "茶叶蛋",
+    "鸡蛋羹",
+    "蛋",
+    "蒸蛋"
+   ],
+   "category": "含蛋白质的混合物",
+   "note": "蛋清(蛋白质3g 脂肪0g)+蛋黄(蛋白质3g 脂肪5g)=全蛋(蛋白质6g 脂肪5g)，约50g/个",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 144.0,
+      "carb": 1.5,
+      "protein": 12,
+      "fat": 10
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "egg_white",
+   "name": "蛋清",
+   "aliases": [
+    "蛋白",
+    "鸡蛋清"
+   ],
+   "category": "含蛋白质的混合物",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 48.0,
+      "carb": 1,
+      "protein": 11,
+      "fat": 0
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "egg_yolk",
+   "name": "蛋黄",
+   "aliases": [
+    "鸡蛋黄"
+   ],
+   "category": "含蛋白质的混合物",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 321.0,
+      "carb": 3.5,
+      "protein": 16,
+      "fat": 27
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "milk",
+   "name": "牛奶",
+   "aliases": [
+    "纯牛奶",
+    "全脂牛奶",
+    "奶"
+   ],
+   "category": "含蛋白质的混合物",
+   "note": "250ml盒装纯牛奶：碳水12g 蛋白质10g 脂肪9g；可按密度近似1g≈1ml",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 72.0,
+      "carb": 5,
+      "protein": 4,
+      "fat": 4
+     },
+     "basis": "毫升"
+    }
+   }
+  },
+  {
+   "id": "milk_skim",
+   "name": "脱脂牛奶/代糖酸奶",
+   "aliases": [
+    "脱脂牛奶",
+    "代糖酸奶",
+    "无糖酸奶",
+    "低脂牛奶"
+   ],
+   "category": "含蛋白质的混合物",
+   "note": "代糖酸奶可简单等同于纯牛奶",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 44.5,
+      "carb": 5,
+      "protein": 5,
+      "fat": 0.5
+     },
+     "basis": "毫升"
+    }
+   }
+  },
+  {
+   "id": "yogurt",
+   "name": "酸奶",
+   "aliases": [
+    "含糖酸奶"
+   ],
+   "category": "含蛋白质的混合物",
+   "note": "含糖酸奶会多10g+糖",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 89.0,
+      "carb": 12,
+      "protein": 3.5,
+      "fat": 3
+     },
+     "basis": "毫升"
+    }
+   }
+  },
+  {
+   "id": "soybean_dry",
+   "name": "干黄豆",
+   "aliases": [
+    "黄豆",
+    "大豆"
+   ],
+   "category": "含蛋白质的混合物",
+   "note": "可吃一些，但不能替代瘦肉（氨基酸比例差、附带过多脂肪）",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 420.0,
+      "carb": 34,
+      "protein": 35,
+      "fat": 16
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "edamame",
+   "name": "鲜黄豆/毛豆/青豆",
+   "aliases": [
+    "毛豆",
+    "青豆",
+    "鲜黄豆"
+   ],
+   "category": "含蛋白质的混合物",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 141.0,
+      "carb": 11,
+      "protein": 13,
+      "fat": 5
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "tofu_skin",
+   "name": "豆皮/千张",
+   "aliases": [
+    "豆皮",
+    "千张",
+    "百叶"
+   ],
+   "category": "含蛋白质的混合物",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 400.0,
+      "carb": 20,
+      "protein": 35,
+      "fat": 20
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "tofu",
+   "name": "豆腐",
+   "aliases": [
+    "老豆腐",
+    "嫩豆腐",
+    "北豆腐"
+   ],
+   "category": "含蛋白质的混合物",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 85.0,
+      "carb": 3,
+      "protein": 7,
+      "fat": 5
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "soymilk",
+   "name": "豆浆",
+   "aliases": [
+    "无糖豆浆"
+   ],
+   "category": "含蛋白质的混合物",
+   "note": "主要是水，热量很低；注意高甜豆浆约放20g糖",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 34.0,
+      "carb": 1,
+      "protein": 3,
+      "fat": 2
+     },
+     "basis": "毫升"
+    }
+   }
+  },
+  {
+   "id": "baijiu",
+   "name": "白酒",
+   "aliases": [
+    "白酒"
+   ],
+   "category": "酒精",
+   "note": "按50度白酒估算：1两（50g）≈175-200大卡≈44-50g碳水的热量",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 0,
+      "carb": 0,
+      "protein": 0,
+      "fat": 0
+     },
+     "basis": "重量"
+    },
+    "alcohol": {
+     "per100g": {
+      "kcal": 350,
+      "carb": 0,
+      "protein": 0,
+      "fat": 0
+     },
+     "basis": "重量"
+    }
+   }
+  },
+  {
+   "id": "beer",
+   "name": "啤酒",
+   "aliases": [
+    "啤酒"
+   ],
+   "category": "酒精",
+   "note": "按3度啤酒估算：600g一瓶约碳水4%×4 + 酒精3%×7 ≈ 222大卡。1瓶啤酒≈200大卡≈50g碳水的热量",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 16,
+      "carb": 4,
+      "protein": 0.4,
+      "fat": 0
+     },
+     "basis": "毫升"
+    },
+    "alcohol": {
+     "per100g": {
+      "kcal": 21,
+      "carb": 0,
+      "protein": 0,
+      "fat": 0
+     },
+     "basis": "毫升"
+    }
+   }
+  },
+  {
+   "id": "wine",
+   "name": "红酒/黄酒",
+   "aliases": [
+    "红酒",
+    "葡萄酒",
+    "黄酒"
+   ],
+   "category": "酒精",
+   "note": "按12度红/黄酒估算：酒精12%×7 ≈ 84大卡/100ml",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 12,
+      "carb": 3,
+      "protein": 0.1,
+      "fat": 0
+     },
+     "basis": "毫升"
+    },
+    "alcohol": {
+     "per100g": {
+      "kcal": 84,
+      "carb": 0,
+      "protein": 0,
+      "fat": 0
+     },
+     "basis": "毫升"
+    }
+   }
+  },
+  {
+   "id": "vegetable",
+   "name": "蔬菜（不限量）",
+   "aliases": [
+    "蔬菜",
+    "青菜",
+    "生菜",
+    "西兰花",
+    "菠菜",
+    "黄瓜",
+    "白菜",
+    "豆角",
+    "花菜",
+    "菜花",
+    "青菜类"
+   ],
+   "category": "蔬菜",
+   "note": "蔬菜碳水率很低，不用定量；确保瘦肉菜的前提下吃带油炒菜",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 28.7,
+      "carb": 5,
+      "protein": 1.5,
+      "fat": 0.3
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "konjac_snack",
+   "name": "卫龙海带丝/魔芋爽",
+   "aliases": [
+    "海带丝",
+    "魔芋爽",
+    "魔芋零食"
+   ],
+   "category": "零食",
+   "note": "独立小袋装，有一点油可以挤一下",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 79.0,
+      "carb": 12,
+      "protein": 1,
+      "fat": 3
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "chicken_feet",
+   "name": "有友泡椒凤爪",
+   "aliases": [
+    "凤爪",
+    "泡椒凤爪"
+   ],
+   "category": "零食",
+   "note": "轻度五花肉性质，但脚皮重量很轻，口味太辣也吃不了几块",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 192.0,
+      "carb": 1,
+      "protein": 20,
+      "fat": 12
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "dark_chocolate",
+   "name": "黑巧克力（80%以上）",
+   "aliases": [
+    "黑巧克力",
+    "黑巧"
+   ],
+   "category": "零食",
+   "note": "近乎碳脂各半的高热量食物，80%以上很苦，吃不了两三块",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 512.0,
+      "carb": 30,
+      "protein": 8,
+      "fat": 40
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "soda_sparkling",
+   "name": "纯水乐苏打气泡水/无糖气泡水",
+   "aliases": [
+    "苏打水",
+    "气泡水",
+    "无糖气泡水"
+   ],
+   "category": "零食",
+   "note": "无热量饮料",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 0.0,
+      "carb": 0,
+      "protein": 0,
+      "fat": 0
+     },
+     "basis": "毫升"
+    }
+   }
+  },
+  {
+   "id": "takeaway_rice_box",
+   "name": "外卖米饭（长方形盒）",
+   "aliases": [
+    "外卖米饭",
+    "外卖饭盒",
+    "长方形饭盒饭"
+   ],
+   "category": "米类主食",
+   "note": "碳水约100g/份（长方形盒；正文写90-120g，取100g）",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 132.7,
+      "carb": 30,
+      "protein": 2.5,
+      "fat": 0.3
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "takeaway_rice_round",
+   "name": "外卖米饭（圆形扁盒）",
+   "aliases": [
+    "圆盒米饭"
+   ],
+   "category": "米类主食",
+   "note": "碳水约75g/份",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 110.7,
+      "carb": 25,
+      "protein": 2,
+      "fat": 0.3
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "chicken_wing_tip",
+   "name": "鸡翅根（去皮）",
+   "aliases": [
+    "鸡翅根"
+   ],
+   "category": "固定重量食物",
+   "note": "蛋白质约8g/个，按50g/个计",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 109.0,
+      "carb": 0,
+      "protein": 16,
+      "fat": 5
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "chicken_drumstick_small",
+   "name": "小鸡腿（去皮，琵琶腿）",
+   "aliases": [
+    "小鸡腿",
+    "琵琶腿"
+   ],
+   "category": "固定重量食物",
+   "note": "蛋白质约15g/个，按75g/个计",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 125.0,
+      "carb": 0,
+      "protein": 20,
+      "fat": 5
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "chicken_drumstick",
+   "name": "全鸡腿（去皮）",
+   "aliases": [
+    "全鸡腿",
+    "手枪鸡腿"
+   ],
+   "category": "固定重量食物",
+   "note": "蛋白质约40g/个，按200g/个计",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 125.0,
+      "carb": 0,
+      "protein": 20,
+      "fat": 5
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "duck_leg",
+   "name": "全鸭腿（去皮）",
+   "aliases": [
+    "鸭腿",
+    "全鸭腿"
+   ],
+   "category": "固定重量食物",
+   "note": "蛋白质约20g/个，按100g/个计",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 125.0,
+      "carb": 0,
+      "protein": 20,
+      "fat": 5
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "blueberry",
+   "name": "蓝莓（盒）",
+   "aliases": [
+    "蓝莓"
+   ],
+   "category": "固定重量食物",
+   "note": "碳水约15g/盒",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 61.5,
+      "carb": 14,
+      "protein": 0.7,
+      "fat": 0.3
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "hamburger",
+   "name": "合格汉堡（板烧/双吉/奥尔良/鳕鱼/果木鸡腿）",
+   "aliases": [
+    "汉堡",
+    "板烧堡",
+    "双吉堡",
+    "奥尔良堡",
+    "鳕鱼堡",
+    "鸡腿堡"
+   ],
+   "category": "糖油混合物与高脂肉",
+   "note": "碳水40g 蛋白质20g 脂肪15g；只吃指定的几种，安格斯、皇堡等牛肉堡脂肪爆炸",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 375.0,
+      "carb": 40,
+      "protein": 20,
+      "fat": 15
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "dumpling",
+   "name": "肉馅水饺",
+   "aliases": [
+    "饺子",
+    "水饺",
+    "速冻水饺",
+    "喜家德水饺"
+   ],
+   "category": "糖油混合物与高脂肉",
+   "note": "每只碳水约5g、蛋白质2g、脂肪3g（喜家德大小）；碳水+五花肉构成",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 250.0,
+      "carb": 22,
+      "protein": 9,
+      "fat": 14
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "meat_bun",
+   "name": "肉包子",
+   "aliases": [
+    "肉包",
+    "肉包子",
+    "包子（肉馅）"
+   ],
+   "category": "糖油混合物与高脂肉",
+   "note": "馒头+五花肉性质，换成馒头或素包子",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 262.0,
+      "carb": 35,
+      "protein": 8,
+      "fat": 10
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "veg_bun",
+   "name": "素包子",
+   "aliases": [
+    "素包",
+    "素包子",
+    "菜包"
+   ],
+   "category": "麦类主食",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 233.0,
+      "carb": 40,
+      "protein": 7,
+      "fat": 5
+     },
+     "basis": "熟重"
+    }
+   }
+  },
+  {
+   "id": "nuts",
+   "name": "坚果（补脂肪用，30g）",
+   "aliases": [
+    "坚果",
+    "混合坚果",
+    "花生",
+    "杏仁",
+    "核桃"
+   ],
+   "category": "糖油混合物与高脂肉",
+   "note": "不吃蛋黄牛奶或专吃低油无油菜时，全天补吃30g坚果",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 582.0,
+      "carb": 15,
+      "protein": 18,
+      "fat": 50
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "fried_egg",
+   "name": "煎蛋/炒蛋（油煎）",
+   "aliases": [
+    "煎蛋",
+    "炒鸡蛋",
+    "西红柿炒鸡蛋",
+    "番茄炒蛋",
+    "荷包蛋"
+   ],
+   "category": "糖油混合物与高脂肉",
+   "note": "一个煎蛋6g蛋白质，但脂肪至少20g（吸油）；能回避就回避",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 306.0,
+      "carb": 1.5,
+      "protein": 12,
+      "fat": 28
+     },
+     "basis": "生重"
+    }
+   }
+  },
+  {
+   "id": "egg_custard",
+   "name": "鸡蛋羹（无油）",
+   "aliases": [
+    "蒸水蛋",
+    "鸡蛋羹"
+   ],
+   "category": "含蛋白质的混合物",
+   "note": "",
+   "components": {
+    "self": {
+     "per100g": {
+      "kcal": 144.0,
+      "carb": 1.5,
+      "protein": 12,
+      "fat": 10
+     },
+     "basis": "生重"
+    }
+   }
+  }
+ ]
+}

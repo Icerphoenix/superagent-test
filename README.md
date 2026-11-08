@@ -1,21 +1,100 @@
-﻿# superagent-test
+# 热量赤字追踪（个人、本地、单人）
 
-**This is a throwaway sandbox repository.** It is not a real project, it contains no application code, and its contents exist only to exercise an automated agent that turns a GitHub request into a pull request.
+给你的减脂期用的记账本：每天称着吃、称着量体重，软件算热量和三大营养素，并把**体重趋势**和**记录的热量**放在一起对照。数据和这个程序都只在你自己电脑上。
 
-Every commit, pull request and comment here was produced by that agent during a test run. Nothing in this repository is meant to be reused, forked as a starting point, or read as documentation.
+> 这是 [Issue #8](https://github.com/Icerphoenix/superagent-test/issues/8) 的 MVP 实现。第一版只做「录饮食 → 算热量/碳水蛋白脂肪 → 记体重 → 看趋势」，**调整建议**和**餐次配额**是刻意留到后面的（见文末）。
 
-## What the sandbox is for
+## 30 秒上手
 
-Each run has the same shape: a person opens an Issue addressing the agent's bot account, and the agent works in its own checkout and opens a pull request for a human to review and merge.
+```bash
+node --version        # 需要 ≥ 22.5（用到了内置的 node:sqlite）
+npm start             # 打开 http://127.0.0.1:8765
+```
 
-- `README.md` and `CHANGELOG.md` exist because earlier test runs added them.
-- Issues and pull requests stay closed once their test completes.
-- Commits are authored by the agent's bot account, not by a person.
+第一次用：进「设置」填性别、身高、出生年份、静息心率（只用来把热量和体重对上，软件不会替你定配额）。然后每天在「今日记录」里：
 
-## Contributing
+1. 搜食物 → 填克数 → 选餐次（早饭/午饭/晚饭/零食）记一笔；
+2. 早上起床排尿后、早饭前称一次体重，填在体重卡片里；
+3. 有有氧就按项目或按心率记一条（按当天最近一次体重换算）。
 
-Please don't open pull requests here. This repository is a test fixture; changes belong in the upstream project.
+之后看「趋势」页，**只看 1-2 周的平滑趋势，不看某一天的数字**。
 
-## License
+### 常驻后台
 
-This project is licensed under the MIT License.
+```bash
+node bin/calorie-deficit.js --port 8765 --db ~/.local/share/calorie/db.sqlite --open
+```
+
+| 参数 | 默认值 | 说明 |
+| --- | --- | --- |
+| `--port` | `8765` | 端口 |
+| `--host` | `127.0.0.1` | 只监听本机；不要改成 `0.0.0.0`，它没有登录 |
+| `--db` | `data/db.sqlite` | 数据文件，也可以设环境变量 `CALORIE_DB` |
+| `--open` | 关 | 启动后自动打开浏览器 |
+
+数据全在一个 SQLite 文件里（WAL 模式）。备份就是复制这个文件；想从头开始就删掉它。
+
+## 技术栈，以及为什么
+
+| 选择 | 原因 |
+| --- | --- |
+| **Node.js 内置模块**，零第三方依赖 | 你要的是一个自己电脑上跑得动的工具。没有 `npm install`、没有构建步骤、没有需要定期升级的依赖树，`git clone` 之后 `npm start` 就能用。 |
+| **`node:sqlite`（SQLite 单文件）** | 饮食和体重是典型的结构化数据，SQL 让「某天/某周/最近 14 天」这类查询直接可写；单文件方便备份和搬家，比 JSON 文件更不容易在写一半时损坏。 |
+| **原生 HTML/CSS/JS 前端**，无框架、无打包 | 界面只有四个页签；不引入框架可以省掉工具链，也方便直接改。 |
+| **本地 HTTP 服务**（127.0.0.1） | 浏览器是现成的跨平台界面；但服务只绑本机、没有账号体系（单人使用，登录对你没有意义）。 |
+
+## 计算方式
+
+营养和热量全部来自你那张套表的 **「19日常食物营养率」**（126 种食物，含常见的复合组成，比如燕麦+牛奶）。
+
+- **热量 = 碳水×4 + 蛋白质×4 + 脂肪×9（+ 酒精度数×7）**，和套表一致；食物库里保留原表的**区间信息**（外食米饭/面条/切片面包/卷饼/熟瘦肉等有上下限的食物，在 `components.<key>.interval` 里记 `per100gMin`/`per100gMax`/`note`），计算按你说的取**区间中点**。
+- **重量永远来自你的食物称**。照片只作留档（餐食照、配料表照），**不参与任何计算**——你明确说过不要拍照片估热量，视觉估重只会给出假精确的数字。
+- **体重趋势**：14 天窗口的指数平滑（EWMA）+ 线性回归斜率，给出「kg/周」及其±95% 范围。不足 10 天或不足 3 次称重时显示「不足」，不硬算——这正是套表「17减脂-问答汇总」**问答 20** 的原则：单日、两三天的体重变化主要是食糜和水分。
+- **热量对照**：基础代谢用 Mifflin-St Jeor，日常维持按基础代谢 ÷ 0.7（含日常活动与食物热效应），再加有氧消耗；按 7700 kcal ≈ 1 kg 脂肪把记录的热量换算成「预计每周掉多少」，再和你实际称出来的趋势比较。对不上时先怀疑记录（没称重、吃多了油、漏了有氧），而不是直接改配额。
+- **有氧**：套表「16有氧热量消耗」的两种方法——按心率 `活动心率/静息心率×6.4-6.2`（kcal/kg·h），或按项目表换算，都需要当天（或最近一次）体重。
+
+完整数据与规则出处见 `data/foods.json` 顶部的 `source` / `notes` 和 `data/activities.json`，界面上「设置 → 关于数据」也写了一遍。
+
+## 已知的取舍和偏差
+
+- **脂肪是算出来的，不是你原表建议的「不细算脂肪」**。为了给出趋势里可对照的数字，软件照样统计脂肪，但很多食物的脂肪是近似值（蔬菜、水果的蛋白质/脂肪按 19 表的区间处理），所以看趋势、别抠小数。
+- 食物库只收了套表里的 126 种，外食很难精确；不确定时宁可搜相近的、给个保守的克数，也别随手估。
+- 酒精按套表问答 13 的能量单独记（啤酒/白酒/红酒的分项），算热量时计入，但**不影响**任何配额逻辑（本来也没有配额）。
+- 没有多用户、没有登录、没有云同步：一台电脑一份数据。
+
+## 刻意还没做的（下一步）
+
+这些是你在 issue 里说「最后再定」的部分，所以这一版没有自作主张：
+
+1. **餐次分配**：早饭/午饭/晚饭/零食各自吃多少碳水、蛋白质、脂肪——要先有 1-2 周的真实记录，再按你的作息和训练时间定。
+2. **趋势驱动的调整建议**：例如「连续两周体重不动而记录的热量确实有赤字 → 该减一点摄入或加一点有氧」。先积累数据，再看。
+3. 食物库扩充、食谱模板、导出台账。
+
+## 开发
+
+```bash
+npm test        # 单元 + HTTP API 测试（node:test，无需安装依赖）
+npm run test:ui # 界面冒烟测试：用无头 Chrome 渲染四个页签，检查关键区块
+```
+
+`test/ui-smoke.mjs` 需要 Chrome；不在默认路径时用 `CHROME=/path/to/chrome` 指定。
+
+代码结构：
+
+```
+bin/calorie-deficit.js  启动器（端口、数据文件、打开浏览器）
+src/server.js           本地 HTTP 服务：JSON API + 静态文件
+src/db.js               SQLite 建表与查询小工具
+src/core/foods.js       食物库、营养素与热量计算
+src/core/trend.js       体重平滑/斜率、基础代谢、热量对照
+src/core/summary.js     一天的汇总、趋势报告、周报
+src/core/activity.js    有氧（心率法/项目表）
+src/core/dates.js       日期工具与 HTTP 错误
+public/                 前端（app.js / app.css / index.html）
+data/foods.json         食物营养率（来自套表「19日常食物营养率」）
+data/activities.json    有氧热量表（来自「16有氧热量消耗」）
+```
+
+## 许可
+
+MIT。
